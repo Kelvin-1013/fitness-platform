@@ -19,7 +19,41 @@ const translations = {
     es: 'Iniciar sesión',
     fr: 'Se connecter'
   },
-  // Add more translations as needed
+  dashboard: {
+    en: 'Dashboard',
+    es: 'Panel de control',
+    fr: 'Tableau de bord'
+  },
+  equipment: {
+    en: 'Connected Equipment',
+    es: 'Equipamiento Conectado',
+    fr: 'Équipement Connecté'
+  },
+  trainingMetrics: {
+    en: 'Training Metrics',
+    es: 'Métricas de Entrenamiento',
+    fr: 'Métriques d\'entraînement'
+  },
+  activeUsers: {
+    en: 'Active Users',
+    es: 'Usuarios Activos',
+    fr: 'Utilisateurs Actifs'
+  },
+  status: {
+    en: 'Status',
+    es: 'Estado',
+    fr: 'Statut'
+  },
+  active: {
+    en: 'Active',
+    es: 'Activo',
+    fr: 'Actif'
+  },
+  maintenance: {
+    en: 'Maintenance',
+    es: 'Mantenimiento',
+    fr: 'Maintenance'
+  }
 };
 
 const LanguageContext = createContext<LanguageContextType | null>(null);

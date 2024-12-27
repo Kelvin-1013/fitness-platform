@@ -20,7 +20,6 @@ const Chat = () => {
 
   const conversation = useConversation({
     onMessage: (message) => {
-      // Handle the message with the correct structure
       addMessage(message.message, message.source === 'user' ? 'user' : 'assistant');
     },
   });
@@ -68,13 +67,24 @@ const Chat = () => {
   };
 
   return (
-    <div className="fixed bottom-4 right-4 z-50">
+    <>
+      {/* Chat Button - Fixed position */}
+      <Button
+        onClick={() => setIsOpen(!isOpen)}
+        className="fixed bottom-4 right-4 z-50 rounded-full h-12 w-12 shadow-lg md:bottom-8 md:right-8 flex items-center justify-center"
+        size="icon"
+      >
+        <MessageSquare className="h-6 w-6" />
+      </Button>
+
+      {/* Chat Window */}
       {isOpen && (
-        <div className="bg-background border rounded-lg shadow-lg w-96 h-[500px] mb-4 flex flex-col">
+        <div className="fixed bottom-20 right-4 z-50 md:bottom-24 md:right-8 w-[calc(100%-2rem)] md:w-96 bg-background border rounded-lg shadow-lg flex flex-col max-h-[calc(100vh-8rem)]">
           <div className="p-4 border-b">
             <h2 className="font-semibold">Chat Support</h2>
           </div>
-          <div className="flex-1 overflow-y-auto p-4 space-y-4">
+          
+          <div className="flex-1 overflow-y-auto p-4 space-y-4 min-h-[300px] max-h-[500px]">
             {messages.map((message) => (
               <div
                 key={message.id}
@@ -93,6 +103,7 @@ const Chat = () => {
             ))}
             <div ref={messagesEndRef} />
           </div>
+
           <div className="p-4 border-t flex gap-2">
             <Button
               variant="outline"
@@ -100,27 +111,22 @@ const Chat = () => {
               onClick={toggleRecording}
               className={isRecording ? 'text-red-500' : ''}
             >
-              {isRecording ? <MicOff /> : <Mic />}
+              {isRecording ? <MicOff className="h-4 w-4" /> : <Mic className="h-4 w-4" />}
             </Button>
             <Input
               value={newMessage}
               onChange={(e) => setNewMessage(e.target.value)}
               placeholder="Type a message..."
               onKeyPress={(e) => e.key === 'Enter' && handleSend()}
+              className="flex-1"
             />
-            <Button onClick={handleSend}>
+            <Button onClick={handleSend} size="icon">
               <Send className="h-4 w-4" />
             </Button>
           </div>
         </div>
       )}
-      <Button
-        onClick={() => setIsOpen(!isOpen)}
-        className="rounded-full h-12 w-12"
-      >
-        <MessageSquare />
-      </Button>
-    </div>
+    </>
   );
 };
 
