@@ -23,60 +23,70 @@ const EquipmentDetail = () => {
   const { id } = useParams();
 
   return (
-    <div className="container mx-auto px-6 py-8">
-      <h1 className="text-3xl font-bold mb-8">Equipment Details - {id}</h1>
+    <div className="container mx-auto px-6 py-8 bg-background text-foreground">
+      <h1 className="text-3xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/70">
+        Equipment Details - {id}
+      </h1>
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-        <Card className="bg-gray-800 text-white">
-          <CardHeader>
-            <CardTitle>Equipment Status</CardTitle>
+        <Card className="border-2 border-border/50 bg-card shadow-lg hover:shadow-xl transition-shadow duration-200">
+          <CardHeader className="border-b border-border/10">
+            <CardTitle className="text-xl font-semibold text-primary">Equipment Status</CardTitle>
           </CardHeader>
-          <CardContent>
+          <CardContent className="pt-6">
             <div className="space-y-4">
-              <div className="flex justify-between">
-                <span>Status</span>
-                <span className="text-green-400">Active</span>
+              <div className="flex justify-between items-center p-2 rounded-lg hover:bg-accent/5 transition-colors">
+                <span className="text-muted-foreground">Status</span>
+                <span className="text-green-500 dark:text-green-400 font-medium">Active</span>
               </div>
-              <div className="flex justify-between">
-                <span>Last Maintenance</span>
-                <span>2024-05-15</span>
+              <div className="flex justify-between items-center p-2 rounded-lg hover:bg-accent/5 transition-colors">
+                <span className="text-muted-foreground">Last Maintenance</span>
+                <span className="text-card-foreground font-medium">2024-05-15</span>
               </div>
-              <div className="flex justify-between">
-                <span>Total Usage Hours</span>
-                <span>1,245</span>
+              <div className="flex justify-between items-center p-2 rounded-lg hover:bg-accent/5 transition-colors">
+                <span className="text-muted-foreground">Total Usage Hours</span>
+                <span className="text-card-foreground font-medium">1,245</span>
               </div>
-              <div className="flex justify-between">
-                <span>Health Score</span>
-                <span className="text-green-400">95%</span>
+              <div className="flex justify-between items-center p-2 rounded-lg hover:bg-accent/5 transition-colors">
+                <span className="text-muted-foreground">Health Score</span>
+                <span className="text-green-500 dark:text-green-400 font-medium">95%</span>
               </div>
             </div>
           </CardContent>
         </Card>
 
-        <Card className="bg-gray-800 text-white">
-          <CardHeader>
-            <CardTitle>Usage Statistics</CardTitle>
+        <Card className="border-2 border-border/50 bg-card shadow-lg hover:shadow-xl transition-shadow duration-200">
+          <CardHeader className="border-b border-border/10">
+            <CardTitle className="text-xl font-semibold text-primary">Usage Statistics</CardTitle>
           </CardHeader>
-          <CardContent>
+          <CardContent className="pt-6">
             <div className="h-[200px]">
               <ResponsiveContainer width="100%" height="100%">
                 <LineChart data={usageData}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
-                  <XAxis dataKey="time" stroke="#9CA3AF" />
-                  <YAxis stroke="#9CA3AF" />
+                  <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
+                  <XAxis 
+                    dataKey="time" 
+                    stroke="hsl(var(--muted-foreground))"
+                    tick={{ fill: "hsl(var(--muted-foreground))" }}
+                  />
+                  <YAxis 
+                    stroke="hsl(var(--muted-foreground))"
+                    tick={{ fill: "hsl(var(--muted-foreground))" }}
+                  />
                   <Tooltip 
                     contentStyle={{ 
-                      backgroundColor: '#1F2937',
-                      border: 'none',
-                      borderRadius: '0.375rem'
+                      backgroundColor: "hsl(var(--card))",
+                      border: "1px solid hsl(var(--border))",
+                      borderRadius: "0.5rem",
+                      color: "hsl(var(--card-foreground))"
                     }}
                   />
                   <Line 
                     type="monotone" 
                     dataKey="usage" 
-                    stroke="#60A5FA"
+                    stroke="hsl(var(--primary))"
                     strokeWidth={2}
-                    dot={{ fill: '#60A5FA' }}
+                    dot={{ fill: "hsl(var(--primary))" }}
                   />
                 </LineChart>
               </ResponsiveContainer>
@@ -85,30 +95,38 @@ const EquipmentDetail = () => {
         </Card>
       </div>
 
-      <Card className="bg-gray-800 text-white mb-8">
-        <CardHeader>
-          <CardTitle>Maintenance History</CardTitle>
+      <Card className="border-2 border-border/50 bg-card shadow-lg hover:shadow-xl transition-shadow duration-200 mb-8">
+        <CardHeader className="border-b border-border/10">
+          <CardTitle className="text-xl font-semibold text-primary">Maintenance History</CardTitle>
         </CardHeader>
-        <CardContent>
+        <CardContent className="pt-6">
           <div className="h-[300px]">
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={maintenanceData}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
-                <XAxis dataKey="date" stroke="#9CA3AF" />
-                <YAxis stroke="#9CA3AF" />
+                <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
+                <XAxis 
+                  dataKey="date" 
+                  stroke="hsl(var(--muted-foreground))"
+                  tick={{ fill: "hsl(var(--muted-foreground))" }}
+                />
+                <YAxis 
+                  stroke="hsl(var(--muted-foreground))"
+                  tick={{ fill: "hsl(var(--muted-foreground))" }}
+                />
                 <Tooltip 
                   contentStyle={{ 
-                    backgroundColor: '#1F2937',
-                    border: 'none',
-                    borderRadius: '0.375rem'
+                    backgroundColor: "hsl(var(--card))",
+                    border: "1px solid hsl(var(--border))",
+                    borderRadius: "0.5rem",
+                    color: "hsl(var(--card-foreground))"
                   }}
                 />
                 <Line 
                   type="monotone" 
                   dataKey="score" 
-                  stroke="#34D399"
+                  stroke="hsl(var(--primary))"
                   strokeWidth={2}
-                  dot={{ fill: '#34D399' }}
+                  dot={{ fill: "hsl(var(--primary))" }}
                 />
               </LineChart>
             </ResponsiveContainer>
